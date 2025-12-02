@@ -1,0 +1,59 @@
+{
+  "app": {
+    "name": "linsa"
+  },
+  "tasks": {
+    "setup": {
+      "desc": "Validate bun installation.",
+      "silent": true,
+      "cmds": [
+        "  bash <<'BASH'\n  set -euo pipefail\n\n  if ! command -v bun >/dev/null 2>&1; then\n    echo \"Error: bun is not installed. Install it from https://bun.sh before continuing.\" >&2\n    exit 1\n  fi\n  echo \"✔️ you are setup\"\n  BASH\n  "
+      ]
+    },
+    "dev": {
+      "desc": "Run the local development server.",
+      "cmds": [
+        "bun dev"
+      ]
+    },
+    "script": {
+      "desc": "Watch and run scripts/run.ts via bun.",
+      "cmds": [
+        "bun --watch scripts/run.ts"
+      ]
+    }
+  },
+  "secrets": {
+    "BLADE_OPENAI_API_KEY": {
+      "label": "OpenAI API key",
+      "required": true,
+      "description": "API key used to call OpenAI endpoints."
+    },
+    "BLADE_RESEND_API_KEY": {
+      "label": "Resend API key",
+      "required": true,
+      "description": "API key from the Resend dashboard."
+    },
+    "RONIN_ID": {
+      "label": "Ronin database identifier",
+      "required": true,
+      "default": "ns:ronin/db:main",
+      "description": "Identifier of the Ronin database to use."
+    },
+    "RONIN_TOKEN": {
+      "label": "Ronin database token",
+      "required": true,
+      "description": "Token that authorizes access to the Ronin database."
+    },
+    "BLADE_AUTH_SECRET": {
+      "label": "Blade auth secret",
+      "required": true,
+      "description": "Secret used to sign and verify authentication tokens."
+    },
+    "BLADE_1F_API_KEY": {
+      "label": "1Focus API key",
+      "required": true,
+      "description": "API key used to send messages via 1Focus."
+    }
+  }
+}

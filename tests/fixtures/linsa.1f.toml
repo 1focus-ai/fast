@@ -1,0 +1,58 @@
+[app]
+name = "linsa"
+
+[tasks.setup]
+desc = "Validate bun installation."
+silent = true
+cmds = [
+  '''
+  bash <<'BASH'
+  set -euo pipefail
+
+  if ! command -v bun >/dev/null 2>&1; then
+    echo "Error: bun is not installed. Install it from https://bun.sh before continuing." >&2
+    exit 1
+  fi
+  echo "✔️ you are setup"
+  BASH
+  ''',
+]
+
+[tasks.dev]
+desc = "Run the local development server."
+cmds = ["bun dev"]
+
+[tasks.script]
+desc = "Watch and run scripts/run.ts via bun."
+cmds = ["bun --watch scripts/run.ts"]
+
+[secrets.BLADE_OPENAI_API_KEY]
+label = "OpenAI API key"
+required = true
+description = "API key used to call OpenAI endpoints."
+
+[secrets.BLADE_RESEND_API_KEY]
+label = "Resend API key"
+required = true
+description = "API key from the Resend dashboard."
+
+[secrets.RONIN_ID]
+label = "Ronin database identifier"
+required = true
+default = "ns:ronin/db:main"
+description = "Identifier of the Ronin database to use."
+
+[secrets.RONIN_TOKEN]
+label = "Ronin database token"
+required = true
+description = "Token that authorizes access to the Ronin database."
+
+[secrets.BLADE_AUTH_SECRET]
+label = "Blade auth secret"
+required = true
+description = "Secret used to sign and verify authentication tokens."
+
+[secrets.BLADE_1F_API_KEY]
+label = "1Focus API key"
+required = true
+description = "API key used to send messages via 1Focus."

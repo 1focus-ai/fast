@@ -1,0 +1,30 @@
+{
+  "name": "1f",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "publish": "bun publish.ts"
+  },
+  "bin": {
+    "ts": "./bin/ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "prettier": {
+    "semi": false
+  },
+  "dependencies": {
+    "1focus": "file:../1focus",
+    "@ai-sdk/openai": "^2.0.66",
+    "@iarna/toml": "^2.2.5",
+    "@opentui/core": "^0.1.42",
+    "@opentui/react": "^0.1.42",
+    "ai": "^5.0.93",
+    "react": "^19.2.0"
+  }
+}
